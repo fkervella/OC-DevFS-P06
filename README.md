@@ -42,7 +42,7 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 
 # Etapes
 ## Etape 1 : Initialisation du projet
-> Mettre en place l'environnement de développement avec Create React Router
+x Mettre en place l'environnement de développement avec Create React Router
 
 # Etape 2 : Découverte du back-end et mock des données
 > Comprendre la structure de l'interface et créer le mock de données
