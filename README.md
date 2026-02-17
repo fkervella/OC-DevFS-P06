@@ -46,12 +46,6 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 
 # Etape 2 : Découverte du back-end et mock des données
 > Comprendre la structure de l'interface et créer le mock de données
-<<<<<<< HEAD
-> Instalation du backend
-> Utilisation de Postman
-> Créer le fichier pour la gestion des données mockées
-> Structurer les données pour utilisation avec les graphiques
-=======
 
 > Instalation du backend
 
@@ -61,43 +55,25 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 
 > Structurer les données pour utilisation avec les graphiques
 
->>>>>>> 77fe4ab (Mise en forme du fichier README.md)
 > Comparer aux maquettes Figma
 
 # Etape 3 : Mettre en place React Router et l'authentification
-> Navigation fonctionnelle
-<<<<<<< HEAD
-> Fichier spécifique pour les routes de l'application
-> Gestion des erreurs
-=======
 
 > Fichier spécifique pour les routes de l'application
 
 > Gestion des erreurs
 
->>>>>>> 77fe4ab (Mise en forme du fichier README.md)
 > token peut être stocké dans cookie
 
 # Etape 4 : Mise en place de Context API
 > Identifier les données à partager entre composants
-<<<<<<< HEAD
-> Partage des données entre composants
-=======
 
 > Partage des données entre composants
 
->>>>>>> 77fe4ab (Mise en forme du fichier README.md)
 > Ne pas surcharger le contexte avec les données non essentielles
 
 # Etape 5 : Développer les graphiques avec Recharts
 > Remplacement des données mockées par les appels à l'API réelle
-<<<<<<< HEAD
-> Le système d'authentification doit fonctionner
-> Service dédié aux appels API
-> Implémenter une gestion des erreurs
-> Utiliser les états de chargement pour améliorer l'expérience utilisateur
-
-=======
 
 > Le système d'authentification doit fonctionner
 
@@ -107,5 +83,3 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 
 > Utiliser les états de chargement pour améliorer l'expérience utilisateur
 
-
->>>>>>> 77fe4ab (Mise en forme du fichier README.md)
