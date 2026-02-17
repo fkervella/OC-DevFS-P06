@@ -42,30 +42,31 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 
 # Etapes
 ## Etape 1 : Initialisation du projet
-Mettre en place l'environnement de développement avec Create React Router
+> Mettre en place l'environnement de développement avec Create React Router
 
 # Etape 2 : Découverte du back-end et mock des données
-Comprendre la structure de l'interface et créer le mock de données
-Instalation du backend
-Utilisation de Postman
-Créer le fichier pour la gestion des données mockées
-Structurer les données pour utilisation avec les graphiques
-Comparer aux maquettes Figma
+> Comprendre la structure de l'interface et créer le mock de données
+> Instalation du backend
+> Utilisation de Postman
+> Créer le fichier pour la gestion des données mockées
+> Structurer les données pour utilisation avec les graphiques
+> Comparer aux maquettes Figma
 
 # Etape 3 : Mettre en place React Router et l'authentification
-Navigation fonctionnelle
-Fichier spécifique pour les routes de l'application
-Gestion des erreurs
-token peut être stocké dans cookie
+> Navigation fonctionnelle
+> Fichier spécifique pour les routes de l'application
+> Gestion des erreurs
+> token peut être stocké dans cookie
 
 # Etape 4 : Mise en place de Context API
-Identifier les données à partager entre composants
-Partage des données entre composants
-Ne pas surcharger le contexte avec les données non essentielles
+> Identifier les données à partager entre composants
+> Partage des données entre composants
+> Ne pas surcharger le contexte avec les données non essentielles
 
 # Etape 5 : Développer les graphiques avec Recharts
-Remplacement des données mockées par les appels à l'API réelle
-Le système d'authentification doit fonctionner
-Service dédié aux appels API
-Implémenter une gestion des erreurs
-Utiliser les états de chargement pour améliorer l'expérience utilisateur
+> Remplacement des données mockées par les appels à l'API réelle
+> Le système d'authentification doit fonctionner
+> Service dédié aux appels API
+> Implémenter une gestion des erreurs
+> Utiliser les états de chargement pour améliorer l'expérience utilisateur
+
