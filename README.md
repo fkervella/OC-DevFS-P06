@@ -45,17 +45,19 @@ Développeur front-end chez Sportsee, stratup dédié au coaching sportif
 x Mettre en place l'environnement de développement avec Create React Router
 
 # Etape 2 : Découverte du back-end et mock des données
-> Comprendre la structure de l'interface et créer le mock de données
+x Comprendre la structure de l'interface et créer le mock de données
 
-> Instalation du backend
+x Installation du backend
 
-> Utilisation de Postman
+x Utilisation de Postman
 
-> Créer le fichier pour la gestion des données mockées
+x Créer le fichier pour la gestion des données mockées
 
-> Structurer les données pour utilisation avec les graphiques
+x Structurer les données pour utilisation avec les graphiques
+    > Affichage des courbes : chaque x : {name:'S1', courbe1:valeur, courbe2:valeur}
+    > Affichage du camembert : [ {name:'segment1', value:valeur}, {name:'segment2', value:valeur} ]
 
-> Comparer aux maquettes Figma
+x Comparer aux maquettes Figma
 
 # Etape 3 : Mettre en place React Router et l'authentification
 
