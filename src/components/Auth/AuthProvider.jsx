@@ -30,6 +30,28 @@ function authReducer(state, action) {
     }
 }
 
+function setCookie(name, value, days = 7)  {
+    const date = new Date();
+    date.setTime(date.getTime() + (days * 24 * 3600000));
+    const expires = `expires=${date.toUTCString()}`;
+    document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax;Secure`;
+}
+
+/*function getCookie(name){
+    const cookies = documents.cookie.split(';');
+    for(const cookie of cookies) {
+        const [cookieName, cookieValue] = cookie.trim().split('=');
+        if(cookie.name === name) {
+            return cookieValue;
+        }
+    }
+    return null;
+}*/
+
+function deleteCookie(name) {
+    document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
+}
+
 export function AuthProvider({ children }) {
     const [state, dispatch] = useReducer(authReducer, initialState);
 
@@ -51,8 +73,8 @@ export function AuthProvider({ children }) {
                 throw new Error('Login failed');
             }
 
-            const user = await response.json();
-            localStorage.setItem('authToken', user.id);
+            const {token, user} = await response.json();
+            setCookie('authToken', token);
             dispatch({ type: 'LOGIN_SUCCESS', payload: user });
         } catch (error) {
             dispatch({
@@ -64,12 +86,8 @@ export function AuthProvider({ children }) {
     }, []);
 
     const logout = useCallback(async () => {
-        /*try {
-            await fetch('/api/auth/logout', { method: 'POST' });
-        } finally {*/
-            localStorage.removeItem('authToken');
-            dispatch({ type: 'LOGOUT' });
-        /*}*/
+        deleteCookie('authToken');
+        dispatch({ type: 'LOGOUT' });
     }, []);
 
     const checkAuth = useCallback(async () => {
@@ -80,14 +98,6 @@ export function AuthProvider({ children }) {
                 dispatch({ type: 'CHECK_AUTH_ERROR' });
                 return;
             }
-            /*
-            const response = await fetch('http://localhost:8000/api/login2', {
-                headers: { Authorization: `Bearer ${token}` },
-            });
-
-            if (!response.ok) {
-                throw new Error('Auth check failed');
-            }*/
 
             const user = await response.json();
             dispatch({ type: 'CHECK_AUTH_SUCCESS', payload: user });
