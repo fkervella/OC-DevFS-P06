@@ -42,12 +42,16 @@ const router = createBrowserRouter([
             },
         ],
     },
-    
     {
-        path: '*',
-        element : (
-            <Layout><Error /></Layout>
-        ),
+        element: <Layout />,
+        children :[
+            {
+                path: '*',
+                element : (
+                    <Error />
+                ),
+            },
+        ],
     },
 ]);
 
