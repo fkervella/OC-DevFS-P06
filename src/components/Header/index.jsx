@@ -1,7 +1,17 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useAuth } from '../../components/Auth/AuthProvider';
 import './Header.css'
 
 function Header() {
+  const { logout, isAuthenticated } = useAuth();
+
+  const navigate = useNavigate();
+  
+  const handleLogout = async () => {
+      await logout();
+      navigate('/login');
+  };
+
   return (
     <header className="header">
       <div className="header-content">
@@ -13,8 +23,11 @@ function Header() {
           <NavLink to="/dashboard" className="nav-link">Dashboard</NavLink>
           <NavLink to="/profile" className="nav-link">Mon profil</NavLink>
           <div>|</div>
-          <NavLink to="/LogIn" className="nav-link">Se connecter</NavLink>
-          <NavLink to="/LogOut" className="nav-link">Se déconnecter</NavLink>
+          {isAuthenticated ? (
+            <button onClick={handleLogout} className="nav-link">Se déconnecter</button>
+            ) :(
+            <NavLink to="/Login" className="nav-link">Se connecter</NavLink>
+            )}
         </nav>
       </div>
     </header>

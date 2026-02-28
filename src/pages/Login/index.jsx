@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
-/*import { useAuth } from '../../components/Auth/AuthProvider';*/
+import { useAuth } from '../../components/Auth/AuthProvider';
 import styles from './Login.module.css'
 
 function LoginPage() {
@@ -8,7 +8,7 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
-  /*const { login, isLoading } = useAuth();*/
+  const { login, isLoading } = useAuth();
   const navigate = useNavigate();
 
   const handleSubmit = async(e) => {
@@ -35,10 +35,10 @@ function LoginPage() {
           <h4>Se connecter</h4>
           <form onSubmit={handleSubmit}>
             <label htmlFor="email">Adresse email</label>
-            <input type="text" id="email" value={email}/>
+            <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)}/>
             <label htmlFor="password">Mot de passe</label>
-            <input type="password" id="password" value={password}/>
-            <button type="submit">Se connecter</button>
+            <input type="password" id="password" value={password} onChange={(e) => setPassword(e.target.value)}/>
+            <button type="submit" disabled={isLoading}>{isLoading ? 'Connexion en cours...' : 'Se connecter'}</button>
           </form>
           <a>Mot de passe oublié ?</a>
         </div>

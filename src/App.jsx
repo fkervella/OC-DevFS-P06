@@ -1,6 +1,6 @@
 import React from 'react'
 
-function App2() {
+function App() {
 }
 
-export default App2
+export default App

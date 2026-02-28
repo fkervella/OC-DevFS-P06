@@ -38,10 +38,10 @@ export function AuthProvider({ children }) {
     }, []);
 
     const login = useCallback(async (email, password) => {
-        username = email;
+        let username = email;
         dispatch({ type: 'LOGIN_START' });
         try {
-            const response = await fetch('localhost:8000/api/login', {
+            const response = await fetch('http://localhost:8000/api/login', {
                 method: 'POST', 
                 headers: { 'content-type': 'application/json'},
                 body: JSON.stringify({ username, password }),
@@ -64,12 +64,12 @@ export function AuthProvider({ children }) {
     }, []);
 
     const logout = useCallback(async () => {
-        try {
+        /*try {
             await fetch('/api/auth/logout', { method: 'POST' });
-        } finally {
+        } finally {*/
             localStorage.removeItem('authToken');
             dispatch({ type: 'LOGOUT' });
-        }
+        /*}*/
     }, []);
 
     const checkAuth = useCallback(async () => {
@@ -80,21 +80,40 @@ export function AuthProvider({ children }) {
                 dispatch({ type: 'CHECK_AUTH_ERROR' });
                 return;
             }
-
-            const response = await fetch('/api/login', {
+            /*
+            const response = await fetch('http://localhost:8000/api/login2', {
                 headers: { Authorization: `Bearer ${token}` },
             });
 
             if (!response.ok) {
                 throw new Error('Auth check failed');
-            }
+            }*/
 
-            const user = await response.jason();
+            const user = await response.json();
             dispatch({ type: 'CHECK_AUTH_SUCCESS', payload: user });
         } catch(error) {
             dispatch({ type: 'CHECK_AUTH_ERROR' });
         }
     }, [] );
+
+    function decodeJWT(token) {
+        const parts = token.split('.');
+        if (parts.length !== 3) {
+            throw new Error('Invalid token format');
+        }
+
+        const decoded = JSON.parse(atob(parts[1]));
+        return decoded;
+    }
+
+    function isTokenExpired(token) {
+        try {
+            const payload = decodeJWT(token);
+            return Date.now() >= payload.exp * 1000;
+        } catch {
+            return true;
+        }
+    }
 
     return (
         <AuthContext.Provider
