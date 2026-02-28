@@ -61,9 +61,9 @@ x Comparer aux maquettes Figma
 
 # Etape 3 : Mettre en place React Router et l'authentification
 
-> Fichier spécifique pour les routes de l'application
+x Fichier spécifique pour les routes de l'application
 
-> Gestion des erreurs
+x Gestion des erreurs
 
 > token peut être stocké dans cookie
 

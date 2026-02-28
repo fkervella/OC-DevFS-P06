@@ -1,7 +1,16 @@
+import {useAuth } from '../../components/Auth/AuthProvider';
+import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css'
 
 function Dashboard() {
 
+    const { user, logout } = useAuth();
+    const navigate = useNavigate();
+
+    const handleLogout = async () => {
+        await logout();
+        navigate('/login');
+    };
   return (
     <div className={styles.page}>
       <div className={styles.abstract}>

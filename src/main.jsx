@@ -1,15 +1,53 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { AuthProvider } from './components/Auth/AuthProvider';
+import { ProtectedRoute } from './components/Auth/ProtectedRoute';
+
+import React, { StrictMode, useState } from 'react'
 import './index.css'
 import LoginPage from './pages/Login'
 import Dashboard from './pages/Dashboard'
 import Profile from './pages/Profile'
 import Error from './pages/Error'
-import Layout from './components/Layout'
-import './index.css'
 
-createRoot(document.getElementById('root')).render(
+function App() {
+    
+    const router = createBrowserRouter([
+        {
+            path: '/',
+            element: <LoginPage />,
+        },
+        {
+            path: '/login',
+            element: <LoginPage />,
+        },
+        {
+            path: '/dashboard', 
+            element: (
+                <ProtectedRoute>
+                    <Dashboard />
+                </ProtectedRoute>
+            ),
+        },
+        {
+            path: '/profile',
+            element: (
+                <ProtectedRoute>
+                    <Profile />
+                </ProtectedRoute>
+            ),
+        },
+        {
+            path: '*',
+            element : (
+                <Error />
+            ),
+        },
+    ]);
+
+    const [token, setToken] = useState();
+
+    return (
+        <>
   <StrictMode>
     <Router>
       <Routes>
@@ -22,5 +60,9 @@ createRoot(document.getElementById('root')).render(
         </Route>
       </Routes>
     </Router>
-  </StrictMode>,
-)
+  </StrictMode>
+        </>
+    );
+}
+
+export default App
