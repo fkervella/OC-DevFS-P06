@@ -6,12 +6,13 @@ import DataComposedChart from '../../components/DataComposedChart'
 import WeekNavigator from '../../components/WeekNavigator'
 import { userData } from '../../../data/user-activity'
 import { useState } from 'react'
+import { startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
 
 function Dashboard() {
 
-const [dateRange, setDateRange] = useState({
-    startDate: new Date('2024-01-01'),
-    endDate: new Date('2024-01-31'),
+  const [dateRange, setDateRange] = useState({
+    startDate: startOfWeek(new Date(), { weekStartsOn: 1 }), // Premier lundi de la semaine actuelle
+    endDate: endOfWeek(addWeeks(new Date(), 3), { weekStartsOn: 1 }), // Dernier dimanche 4 semaines plus tard
   });
 
   return (

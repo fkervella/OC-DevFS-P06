@@ -2,26 +2,6 @@ import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'rec
 import { RechartsDevtools } from '@recharts/devtools';
 import { endOfWeek, isWithinInterval, eachWeekOfInterval, startOfWeek } from 'date-fns';
 
-// #region Sample data
-const data2 = [
-  {
-    name: 'S1',
-    km: 20,
-  },
-  {
-    name: 'S2',
-    km: 27,
-  },
-  {
-    name: 'S3',
-    km: 13,
-  },
-  {
-    name: 'S4',
-    km: 32,
-  },
-];
-
 const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
 
   function transformData(jsonData, startDate, endDate) {
