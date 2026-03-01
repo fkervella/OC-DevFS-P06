@@ -1,54 +1,54 @@
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
+import { format, isWithinInterval, parseISO } from 'date-fns';
 
-// #region Sample data
-const data = [
-  {
-    name: 'Lun',
-    minBpm: 142,
-    maxBpm: 178,
-    maxBpm2: 170,
-  },
-  {
-    name: 'Mar',
-    minBpm: 143,
-    maxBpm: 180,
-    maxBpm2: 172,
-  },
-  {
-    name: 'Mer',
-    minBpm: 145,
-    maxBpm: 184,
-    maxBpm2: 173,
-  },
-  {
-    name: 'Jeu',
-    minBpm: 143,
-    maxBpm: 179,
-    maxBpm2: 171,
-  },
-  {
-    name: 'Ven',
-    minBpm: 140,
-    maxBpm: 167,
-    maxBpm2: 173,
-  },
-  {
-    name: 'Sam',
-    minBpm: 146,
-    maxBpm: 165,
-    maxBpm2: 165,
-  },
-  {
-    name: 'Dim',
-    minBpm: 140,
-    maxBpm: 178,
-    maxBpm2: 170,
-  },
-];
+const DataComposedChart = ( { activityData, startDate, endDate } ) => {
 
-// #endregion
-const DataComposedChart = () => {
+    function transformData(jsonData, startDate, endDate) {
+  
+      const filteredData = jsonData.filter(item => {
+        const itemDate = new Date(item.date);
+        return isWithinInterval(itemDate, { start: startDate, end: endDate});
+      });
+  
+      const daysOfWeek = ['Lun', 'Mar', 'Mer', 'Jeu', 'Ven', 'Sam', 'Dim'];
+      const result = daysOfWeek.map(dayName => ({
+        name: dayName,
+        min: null,
+        max: null,
+        average: null,
+      }));
+
+      filteredData.forEach(item => {
+        const itemDate = parseISO(item.date);
+        const dayIndex = format(itemDate, 'i');
+        const dayKey = daysOfWeek[dayIndex -1];
+
+        const dayEntry = result.find (day => day.name === dayKey);
+        if (dayEntry) {
+          dayEntry.min = dayEntry.min === null ? item.heartRate.min : Math.min(dayEntry.min, item.heartRate.min);
+          dayEntry.max = dayEntry.max === null ? item.heartRate.max : Math.max(dayEntry.max, item.heartRate.max);
+          if(dayEntry.average === null) {
+            dayEntry.average = item.heartRate.average;
+            dayEntry.count = 1;
+          } else {
+            dayEntry.average = (dayEntry.average * dayEntry.count + item.heartRate.average) / (dayEntry.count + 1);
+            dayEntry.count += 1;
+          }
+        }
+      });
+
+      return result.map(day => ({
+        name: day.name,
+        min: day.min !== null ? day.min: 0,
+        max: day.max !== null ? day.max: 0,
+        average: day.average !== null ? Math.round(day.average): 0,
+      }));
+    }
+  
+    const data = transformData(activityData, startDate, endDate);
+    console.log("Données transformées :", data);
+
   return (
     <ComposedChart
       style={{ width: '100%', maxHeight: '300px', aspectRatio: 1.618 }}
@@ -66,9 +66,9 @@ const DataComposedChart = () => {
       <YAxis width="auto" tickLine={false} />
       <Tooltip />
       <Legend />
-      <Bar dataKey="minBpm" barSize={20} fill="#FCC186" radius={25} />
-      <Bar dataKey="maxBpm" barSize={20} fill="#F4320B" radius={25} />
-      <Line type="monotone" dataKey="maxBpm2" stroke="#0B23F4" />
+      <Bar dataKey="min" barSize={20} fill="#FCC186" radius={25} />
+      <Bar dataKey="max" barSize={20} fill="#F4320B" radius={25} />
+      <Line type="monotone" dataKey="average" stroke="#0B23F4" />
       <RechartsDevtools />
     </ComposedChart>
   );

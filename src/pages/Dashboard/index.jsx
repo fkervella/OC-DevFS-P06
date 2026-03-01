@@ -3,7 +3,8 @@ import userProfile from '../../../data/user-info.js'
 import SimplePieChart from '../../components/PieChart'
 import SimpleBarChart from '../../components/SimpleBarChart'
 import DataComposedChart from '../../components/DataComposedChart'
-import WeekNavigator from '../../components/WeekNavigator'
+import FourWeekNavigator from '../../components/FourWeekNavigator'
+import OneWeekNavigator from '../../components/OneWeekNavigator'
 import { userData } from '../../../data/user-activity'
 import { useState } from 'react'
 import { startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
@@ -11,6 +12,11 @@ import { startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
 function Dashboard() {
 
   const [dateRange, setDateRange] = useState({
+    startDate: startOfWeek(new Date(), { weekStartsOn: 1 }), // Premier lundi de la semaine actuelle
+    endDate: endOfWeek(addWeeks(new Date(), 3), { weekStartsOn: 1 }), // Dernier dimanche 4 semaines plus tard
+  });
+
+  const [dateRange4, setDateRange4] = useState({
     startDate: startOfWeek(new Date(), { weekStartsOn: 1 }), // Premier lundi de la semaine actuelle
     endDate: endOfWeek(addWeeks(new Date(), 3), { weekStartsOn: 1 }), // Dernier dimanche 4 semaines plus tard
   });
@@ -36,15 +42,15 @@ function Dashboard() {
         <div className={styles.graphArea}>
           <div className={styles.leftGraph}>
             <div className={styles.leftGraphTitle}>18 km en moyenne</div>
-            <WeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange}/>
+            <FourWeekNavigator startDate={dateRange4.startDate} endDate={dateRange4.endDate} onDateRangeChange={setDateRange4}/>
             <div className={styles.graphExplaination}>Total des kilomètres des 4 dernières semaines</div>
-            <SimpleBarChart activityData={ userData } startDate={dateRange.startDate} endDate={dateRange.endDate} />
+            <SimpleBarChart activityData={ userData } startDate={dateRange4.startDate} endDate={dateRange4.endDate} />
           </div>
           <div className={styles.rightGraph}>
             <div className={styles.rightGraphTitle}>163 BPM</div>
-            <WeekNavigator />
+            <OneWeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange}/>
             <div className={styles.graphExplaination}>Fréquence cardiaque moyenne</div>
-            <DataComposedChart />
+            <DataComposedChart activityData={ userData } startDate={dateRange.startDate} endDate={dateRange.endDate} />
           </div>
         </div>
       </div>
