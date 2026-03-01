@@ -1,0 +1,23 @@
+.footer {
+  background: #ffffff;
+  padding: 0px 40px 0px 40px;
+}
+
+.footer-content {
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+  font: 'inter', sans-serif;
+  font-weight: 400;
+  font-size: 14px;
+}
+
+.footer-logo {
+  margin: 0;
+  font-size: 1.5rem;
+  color: #fff;
+  font-weight: 700;
+}
+
