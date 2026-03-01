@@ -859,3 +859,5 @@ export const userData = [
         "caloriesBurned": 460
     }
 ]
+
+export default userData

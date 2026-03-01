@@ -1,6 +1,7 @@
 import {useAuth } from '../../components/Auth/AuthProvider';
 import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css'
+import userProfile from '../../../data/user-info.js'
 
 function Dashboard() {
 
@@ -10,16 +11,16 @@ function Dashboard() {
   return (
     <div className={styles.page}>
       <div className={styles.abstract}>
-        <img src="./assets/avatar.jpg" alt="image du profil"/>
+        <img src={userProfile.profile.profilePicture} alt="image du profil"/>
         <div className={styles.memberInfo}>
-            <h4>Clara Dupont</h4>
-            <div className={styles.memberSince}>Membre depuis le 14 juin 2023</div>
+            <h4>{userProfile.profile.firstName} {userProfile.profile.lastName}</h4>
+            <div className={styles.memberSince}>Membre depuis le {userProfile.profile.createdAt}</div>
         </div>
         <div className={styles.distanceInfo}>
             <div className={styles.distanceTitle}>Distance totale parcourue</div>
             <div className={styles.distanceArea}>
                 <img src="./assets/OUTLINE.png" alt="image distance parcourue"/>
-                <div className={styles.distance}>312 km</div>
+                <div className={styles.distance}>{userProfile.statistics.totalDistance} km</div>
             </div>
         </div>
       </div>
