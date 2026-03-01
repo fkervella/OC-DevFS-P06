@@ -1,5 +1,9 @@
 import styles from './Dashboard.module.css'
 import userProfile from '../../../data/user-info.js'
+import SimplePieChart from '../../components/PieChart'
+import SimpleBarChart from '../../components/SimpleBarChart'
+import DataComposedChart from '../../components/DataComposedChart'
+import WeekNavigator from '../../components/WeekNavigator'
 
 function Dashboard() {
 
@@ -24,15 +28,15 @@ function Dashboard() {
         <div className={styles.graphArea}>
           <div className={styles.leftGraph}>
             <div className={styles.leftGraphTitle}>18 km en moyenne</div>
-            <div className={styles.dateSelection}>Sélection de la période</div>
-            <div className={styles.graphExplaination}>Totale des kilomètres des 4 dernières semaines</div>
-            <div className={styles.graph}>Graphique</div>
+            <WeekNavigator />
+            <div className={styles.graphExplaination}>Total des kilomètres des 4 dernières semaines</div>
+            <SimpleBarChart />
           </div>
           <div className={styles.rightGraph}>
             <div className={styles.rightGraphTitle}>163 BPM</div>
-            <div className={styles.dateSelection}>Sélection de la période</div>
+            <WeekNavigator />
             <div className={styles.graphExplaination}>Fréquence cardiaque moyenne</div>
-            <div className={styles.graph}>Graphique</div>
+            <DataComposedChart />
           </div>
         </div>
       </div>
@@ -43,7 +47,7 @@ function Dashboard() {
             <div className={styles.weekRuns}>
                 <div className={styles.runResult}><span className={styles.runValue}>4X</span><span className={styles.runUnit}> sur l objectif de 6</span></div>
                 <div className={styles.activityExplaination}>Courses hebdomadaires réalisées</div>
-                <div>Graphique</div>
+                <SimplePieChart />
             </div>
             <div className={styles.activityTime}>
                 <div className={styles.activityExplaination}>Durée de l activité</div>
