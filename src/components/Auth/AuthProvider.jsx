@@ -75,7 +75,9 @@ export function AuthProvider({ children }) {
 
             const {token, user} = await response.json();
             setCookie('authToken', token);
+            
             dispatch({ type: 'LOGIN_SUCCESS', payload: user });
+
         } catch (error) {
             dispatch({
                 type: 'LOGIN_ERROR',
@@ -100,6 +102,7 @@ export function AuthProvider({ children }) {
             }
 
             const user = await response.json();
+            
             dispatch({ type: 'CHECK_AUTH_SUCCESS', payload: user });
         } catch(error) {
             dispatch({ type: 'CHECK_AUTH_ERROR' });

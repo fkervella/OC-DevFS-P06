@@ -1,12 +1,7 @@
-import {useAuth } from '../../components/Auth/AuthProvider';
-import { useNavigate } from 'react-router-dom';
 import styles from './Dashboard.module.css'
 import userProfile from '../../../data/user-info.js'
 
 function Dashboard() {
-
-    const { user, logout } = useAuth();
-    const navigate = useNavigate();
 
   return (
     <div className={styles.page}>

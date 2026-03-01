@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client';
 import { AuthProvider } from './components/Auth/AuthProvider';
 import { ProtectedRoute } from './components/Auth/ProtectedRoute';
 
-import React, { StrictMode, useState } from 'react'
+import React, { StrictMode, useState, useContext } from 'react'
 import './index.css'
 import LoginPage from './pages/Login'
 import Dashboard from './pages/Dashboard'
@@ -59,7 +59,7 @@ const root = createRoot(document.getElementById('root'))
 root.render(
   <StrictMode>
     <AuthProvider>
-      <RouterProvider router={router} />
+        <RouterProvider router={router} />
     </AuthProvider>
   </StrictMode>
 );
