@@ -4,8 +4,15 @@ import SimplePieChart from '../../components/PieChart'
 import SimpleBarChart from '../../components/SimpleBarChart'
 import DataComposedChart from '../../components/DataComposedChart'
 import WeekNavigator from '../../components/WeekNavigator'
+import { userData } from '../../../data/user-activity'
+import { useState } from 'react'
 
 function Dashboard() {
+
+const [dateRange, setDateRange] = useState({
+    startDate: new Date('2024-01-01'),
+    endDate: new Date('2024-01-31'),
+  });
 
   return (
     <div className={styles.page}>
@@ -28,9 +35,9 @@ function Dashboard() {
         <div className={styles.graphArea}>
           <div className={styles.leftGraph}>
             <div className={styles.leftGraphTitle}>18 km en moyenne</div>
-            <WeekNavigator />
+            <WeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange}/>
             <div className={styles.graphExplaination}>Total des kilomètres des 4 dernières semaines</div>
-            <SimpleBarChart />
+            <SimpleBarChart activityData={ userData } startDate={dateRange.startDate} endDate={dateRange.endDate} />
           </div>
           <div className={styles.rightGraph}>
             <div className={styles.rightGraphTitle}>163 BPM</div>

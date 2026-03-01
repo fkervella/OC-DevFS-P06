@@ -1,8 +1,9 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
+import { endOfWeek, isWithinInterval, eachWeekOfInterval, startOfWeek } from 'date-fns';
 
 // #region Sample data
-const data = [
+const data2 = [
   {
     name: 'S1',
     km: 20,
@@ -21,8 +22,41 @@ const data = [
   },
 ];
 
-// #endregion
-const SimpleBarChart = () => {
+const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
+
+  function transformData(jsonData, startDate, endDate) {
+
+    const filteredData = jsonData.filter(item => {
+      const itemDate = new Date(item.date);
+      return isWithinInterval(itemDate, { start: startDate, end: endDate});
+    });
+
+    const weeks = eachWeekOfInterval(
+      { start: startOfWeek(startDate, { weekStartsOn: 1 }), end: endOfWeek(endDate, { weekStartsOn: 1}) },
+      { weekStartsOn: 1}
+    );
+
+    const result = weeks.map((weekStart, index) => {
+      const weekEnd = endOfWeek(weekStart, { weekStartsOn: 1 });
+    
+      const weekData = filteredData.filter(item => {
+        const itemDate = new Date(item.date);
+        return isWithinInterval(itemDate, { start: weekStart, end: weekEnd});
+      });
+
+      const totalDistance = weekData.reduce((sum, item) => sum + item.distance, 0);
+
+      return {
+        name: `S${index + 1}`,
+        km: totalDistance,
+      };
+    });
+
+    return result;
+  }
+
+  const data = transformData(activityData, startDate, endDate);
+
   return (
     <BarChart
       style={{ width: '100%', height: '300px', maxHeight: '300px', aspectRatio: 1.618 }}
