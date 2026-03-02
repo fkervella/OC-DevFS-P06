@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from '../../components/Auth/AuthProvider';
-import styles from './Login.module.css'
 
 function LoginPage() {
 
@@ -24,13 +23,13 @@ function LoginPage() {
   };
 
   return (
-    <div className={styles.page}>
-      <div className={styles.leftColumn}>
-        <div className={styles.logoBrand}>
-            <img className={styles.logo} src="./assets/logo1.png" alt="logo"/>
-            <span className={styles.brand}>SPORTSEE</span>
+    <div className="pageColumns">
+      <div className="leftColumn">
+        <div className="logoBrand">
+            <img className="logo" src="./assets/logo1.png" alt="logo"/>
+            <span className="brand">SPORTSEE</span>
         </div>
-        <div className={styles.informations}>
+        <div className="informations">
           <h3>Transformez vos stats en résultats</h3>
           <h4>Se connecter</h4>
           <form onSubmit={handleSubmit}>
@@ -43,9 +42,9 @@ function LoginPage() {
           <a>Mot de passe oublié ?</a>
         </div>
       </div>
-      <div className={styles.rightColumn}>
+      <div className="rightColumn">
           <img src="./assets/connexion.jpg" alt="image page d'accueil"/>
-          <div className={styles.explaination}>Analysez vos performances en un clin d oeil, suivez vos progrès et atteignez vos objectifs.</div>
+          <div className="explaination">Analysez vos performances en un clin d oeil, suivez vos progrès et atteignez vos objectifs.</div>
       </div>
     </div>
   )

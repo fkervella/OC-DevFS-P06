@@ -1,6 +1,5 @@
 import { NavLink, useNavigate } from 'react-router-dom'
 import { useAuth } from '../../components/Auth/AuthProvider';
-import './Header.css'
 
 function Header() {
   const { logout, isAuthenticated } = useAuth();
