@@ -47,7 +47,6 @@ const DataComposedChart = ( { activityData, startDate, endDate } ) => {
     }
   
     const data = transformData(activityData, startDate, endDate);
-    console.log("Données transformées :", data);
 
   return (
     <ComposedChart

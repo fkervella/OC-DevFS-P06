@@ -37,16 +37,16 @@ function setCookie(name, value, days = 7)  {
     document.cookie = `${name}=${value};${expires};path=/;SameSite=Lax;Secure`;
 }
 
-/*function getCookie(name){
-    const cookies = documents.cookie.split(';');
+function getCookie(name){
+    const cookies = document.cookie.split(';');
     for(const cookie of cookies) {
         const [cookieName, cookieValue] = cookie.trim().split('=');
-        if(cookie.name === name) {
+        if(cookieName === name) {
             return cookieValue;
         }
     }
     return null;
-}*/
+}
 
 function deleteCookie(name) {
     document.cookie = `${name}=;expires=Thu, 01 Jan 1970 00:00:00 UTC;path=/;`;
@@ -152,3 +152,5 @@ export function useAuth() {
     }
     return context;
 }
+
+export default getCookie

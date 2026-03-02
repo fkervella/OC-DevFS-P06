@@ -1,10 +1,18 @@
 import styles from './Profile.module.css'
-import userProfile from '../../../data/user-info.js'
+import useFetch from '../../utils/hooks'
 
 function Profile() {
 
+  const { data: userProfile, isLoading: isLoadingUserProfile, error: errorUserProfile } = useFetch(`http://localhost:8000/api/user-info`);
+  if (errorUserProfile) {
+    alert("Problème lors de la récupération des données user-info");
+  }
+
   return (
     <div className={styles.page}>
+      { isLoadingUserProfile ? (<div>Chargement en cours</div>)
+      : ( 
+      <>
       <div className={styles.infos}>
         <div className={styles.memberInfos}>
             <img src={userProfile.profile.profilePicture} alt="image du profil"/>
@@ -46,7 +54,8 @@ function Profile() {
                 </div>
             </div>
         </div>
-      </div>
+      </div></>
+       )}
     </div>
   )
 }
