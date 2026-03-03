@@ -4,7 +4,8 @@ import DataComposedChart from '../../components/DataComposedChart'
 import FourWeekNavigator from '../../components/FourWeekNavigator'
 import OneWeekNavigator from '../../components/OneWeekNavigator'
 import { useState } from 'react'
-import { startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
+import { format, startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
+import { fr } from 'date-fns/locale';
 import useFetch from '../../utils/hooks'
 
 function Dashboard() {
@@ -49,7 +50,7 @@ function Dashboard() {
             <img src={userProfile && userProfile.profile.profilePicture} alt="image du profil" />
             <div className="memberInfo">
               <h4>{userProfile && userProfile.profile.firstName} {userProfile && userProfile.profile.lastName}</h4>
-              <div className="memberSince">Membre depuis le {userProfile && userProfile.profile.createdAt}</div>
+              <div className="memberSince">Membre depuis le {format(userProfile && userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
             </div>
             <div className="distanceInfo">
               <div className="distanceTitle">Distance totale parcourue</div>

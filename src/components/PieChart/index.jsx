@@ -19,7 +19,7 @@ export default function SimplePieChart({isAnimationActive = true,defaultIndex}) 
             dataKey="value"
             cx="50%"
             cy="50%"
-            innerRadius="60%"
+            innerRadius="40%"
             outerRadius="80%"
             fill="#0B23F4"
             label

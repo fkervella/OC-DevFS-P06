@@ -1,4 +1,6 @@
 import useFetch from '../../utils/hooks'
+import { format } from 'date-fns';
+import { fr } from 'date-fns/locale';
 
 function Profile() {
 
@@ -17,7 +19,7 @@ function Profile() {
             <img src={userProfile.profile.profilePicture} alt="image du profil"/>
             <div>
                 <div className="memberName">{userProfile.profile.firstName} {userProfile.profile.lastName}</div>
-                <div className="memberSince">Membre depuis le {userProfile.profile.createdAt}</div>
+                <div className="memberSince">Membre depuis le {format(userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
             </div>
         </div>
         <div className="yourProfile">
@@ -29,7 +31,7 @@ function Profile() {
         </div>
         <div className="stats">
             <h4>Vos statistiques</h4>
-            <div className="statsSubTitle">depuis le {userProfile.profile.createdAt}</div>
+            <div className="statsSubTitle">depuis le {format(userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
             <div className="statsValues">
                 <div className="statInfo">
                     <div className="statExplaination">Temps total couru</div>

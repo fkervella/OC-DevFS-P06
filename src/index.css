@@ -175,6 +175,7 @@ button:focus-visible {
     font-size: 14px;
     font-weight: 400;
     color: #707070;
+    margin-bottom: 20px;
 }
 
 .statsValues {
@@ -188,7 +189,7 @@ button:focus-visible {
 .statInfo {
     background-color: #0B23F4;
     border-radius: 10px;
-    padding: 10px;
+    padding: 10px 25px 10px 25px;
 }
 
 .statExplaination {
@@ -272,7 +273,7 @@ h4 {
     font-weight: 500;
     font-size: 22px;
     color: #111111;
-    margin: 20px 0px 10px 0px;
+    margin: 0px 0px 0px 0px;
 }
 
 form {
