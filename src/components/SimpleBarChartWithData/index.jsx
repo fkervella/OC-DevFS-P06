@@ -21,15 +21,19 @@ function SimpleBarChartWithData() {
 
   return (
     <>
-      <div className="leftGraphTitle">18 km en moyenne</div>
-      <FourWeekNavigator startDate={dateRange4.startDate} endDate={dateRange4.endDate} onDateRangeChange={setDateRange4} />
-      <div className="graphExplaination">Total des kilomètres des 4 dernières semaines</div>
-      { isLoadingUserActivityKm ? (<div>Chargement en cours</div>)
-      : ( 
-      <>
-      <SimpleBarChart activityData={userActivityKm} startDate={dateRange4.startDate} endDate={dateRange4.endDate} />
-      </>
-      )}
+      <div className="graphZone">
+        <div className="leftGraphTitle">18 km en moyenne</div>
+        <FourWeekNavigator startDate={dateRange4.startDate} endDate={dateRange4.endDate} onDateRangeChange={setDateRange4} />
+        <div className="graphExplaination">Total des kilomètres des 4 dernières semaines</div>
+          <div className="graph">
+          { isLoadingUserActivityKm ? (<div>Chargement en cours</div>)
+          : ( 
+          <>
+          <SimpleBarChart activityData={userActivityKm} startDate={dateRange4.startDate} endDate={dateRange4.endDate} />
+          </>
+          )}
+          </div>
+        </div>
     </>
   )
 }

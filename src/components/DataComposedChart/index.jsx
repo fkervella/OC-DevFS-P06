@@ -1,6 +1,7 @@
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import { format, isWithinInterval, parseISO } from 'date-fns';
+import {useState } from 'react';
 
 const DataComposedChart = ( { activityData, startDate, endDate } ) => {
 
@@ -47,6 +48,8 @@ const DataComposedChart = ( { activityData, startDate, endDate } ) => {
     }
   
     const data = transformData(activityData, startDate, endDate);
+    
+    const [isHovered, setIsHovered] = useState(false);
 
   return (
     <ComposedChart
@@ -59,15 +62,17 @@ const DataComposedChart = ( { activityData, startDate, endDate } ) => {
         bottom: 0,
         left: 0,
       }}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <CartesianGrid stroke="#f5f5f5" vertical={false} />
-      <XAxis dataKey="name" scale="band" tickLine={false} />
+      <XAxis dataKey="name" tickLine={false} />
       <YAxis width="auto" tickLine={false} />
       <Tooltip />
       <Legend />
       <Bar dataKey="min" barSize={20} fill="#FCC186" radius={25} />
       <Bar dataKey="max" barSize={20} fill="#F4320B" radius={25} />
-      <Line type="monotone" dataKey="average" stroke="#0B23F4" />
+      <Line type="monotone" dataKey="average" dot={true} stroke={isHovered ? '#0B23F4' : '#B6BDFC'} strokeWidth={3}/>
       <RechartsDevtools />
     </ComposedChart>
   );

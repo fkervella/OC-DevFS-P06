@@ -72,7 +72,7 @@ const FourWeekNavigator = ({startDate: initialStartDate, endDate: initialEndDate
   const weeks = getFourWeeks();
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', gap: '20px' }}>
+    <div className="weekNavigator">
       <button class="buttonSelect" onClick={goToPreviousWeek}>&lt;</button>
       <div>
         <span>{formatDateRange(weeks[0].startDate, weeks[3].endDate)}</span>

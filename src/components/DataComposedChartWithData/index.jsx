@@ -21,15 +21,19 @@ function DataComposedChartWithData() {
 
   return (
       <>
+      <div className="graphZone">
         <div className="rightGraphTitle">163 BPM</div>
         <OneWeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange} />
         <div className="graphExplaination">Fréquence cardiaque moyenne</div>
+          <div className="graph">
         { isLoadingUserActivityBpm ? (<div>Chargement en cours</div>)
         : ( 
         <>
         <DataComposedChart activityData={userActivityBpm} startDate={dateRange.startDate} endDate={dateRange.endDate} />
         </>
         )}
+        </div>
+        </div>
     </>
   )
 }
