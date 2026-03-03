@@ -1,6 +1,7 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import { endOfWeek, isWithinInterval, eachWeekOfInterval, startOfWeek } from 'date-fns';
+import { useState } from 'react';
 
 const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
 
@@ -37,18 +38,21 @@ const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
 
   const data = transformData(activityData, startDate, endDate);
 
+  const [isHovered, setIsHovered] = useState(false);
+
   return (
     <BarChart
       style={{ width: '100%', height: '300px', maxHeight: '300px', aspectRatio: 1.618 }}
       responsive
       data={data}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
     >
       <CartesianGrid stroke="#f5f5f5" vertical={false} />
-      <XAxis dataKey="name" scale="band" tickLine={false} />
+      <XAxis dataKey="name" tickLine={false} />
       <YAxis width="auto" tickLine={false} />
-      <Tooltip />
       <Legend />
-      <Bar dataKey="km" barSize={20} fill="#B6BDFC" radius={25}/>
+      <Bar dataKey="km" barSize={20} fill={isHovered ? '#0B23F4' : '#B6BDFC'} radius={25}/>
       <RechartsDevtools />
     </BarChart>
   );
