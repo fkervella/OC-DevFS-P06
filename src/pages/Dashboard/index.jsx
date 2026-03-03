@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { format, startOfWeek, endOfWeek, addWeeks, } from 'date-fns';
 import { fr } from 'date-fns/locale';
 import useFetch from '../../utils/hooks'
+import MemberInfo from '../../components/MemberInfo';
 
 function Dashboard() {
 
@@ -47,11 +48,7 @@ function Dashboard() {
       { isLoadingUserProfile ? (<div>Chargement en cours</div>)
       : ( 
       <><div className="abstract">
-            <img src={userProfile && userProfile.profile.profilePicture} alt="image du profil" />
-            <div className="memberInfo">
-              <h4>{userProfile && userProfile.profile.firstName} {userProfile && userProfile.profile.lastName}</h4>
-              <div className="memberSince">Membre depuis le {format(userProfile && userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
-            </div>
+            <MemberInfo userProfile={userProfile} />
             <div className="distanceInfo">
               <div className="distanceTitle">Distance totale parcourue</div>
               <div className="distanceArea">

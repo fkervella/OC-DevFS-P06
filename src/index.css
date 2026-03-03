@@ -101,17 +101,12 @@ button:focus-visible {
 }
 
 .memberInfos {
-    background-color: #FFFFFF;
     border-radius: 10px;
     padding: 20px;
     display: flex;
     flex-direction: row;
     gap: 20px;
     align-items: center;
-    grid-column-start: 1;
-    grid-column-end: 1;
-    grid-row-start: 1;
-    grid-row-end: 1;
 }
 
 .memberInfos img {
@@ -133,6 +128,11 @@ button:focus-visible {
     font-size: 14px;
     font-weight: 400;
     color: #707070;
+}
+
+.whiteSpace {
+    background-color: #FFFFFF;
+    border-radius: 10px;
 }
 
 .yourProfile {

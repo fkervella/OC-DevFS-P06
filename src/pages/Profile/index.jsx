@@ -1,6 +1,7 @@
 import useFetch from '../../utils/hooks'
-import { format } from 'date-fns';
-import { fr } from 'date-fns/locale';
+import StatInfo from '../../components/StatInfo';
+import MemberSince from '../../components/MemberSince';
+import MemberInfo from '../../components/MemberInfo';
 
 function Profile() {
 
@@ -15,12 +16,8 @@ function Profile() {
       : ( 
       <>
       <div className="infos">
-        <div className="memberInfos">
-            <img src={userProfile.profile.profilePicture} alt="image du profil"/>
-            <div>
-                <div className="memberName">{userProfile.profile.firstName} {userProfile.profile.lastName}</div>
-                <div className="memberSince">Membre depuis le {format(userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
-            </div>
+        <div className="whiteSpace">
+          <MemberInfo userProfile={userProfile} />
         </div>
         <div className="yourProfile">
             <div className="profileTitle">Votre profil</div>
@@ -31,28 +28,13 @@ function Profile() {
         </div>
         <div className="stats">
             <h4>Vos statistiques</h4>
-            <div className="statsSubTitle">depuis le {format(userProfile.profile.createdAt, "d MMMM yyyy", { locale: fr })}</div>
+            <MemberSince date={userProfile.profile.createdAt}/>
             <div className="statsValues">
-                <div className="statInfo">
-                    <div className="statExplaination">Temps total couru</div>
-                    <div className="stat"><span className="statValue">{userProfile.statistics.totalDuration}h</span><span className="statUnit"> 0min</span></div>
-                </div>
-                <div className="statInfo">
-                    <div className="statExplaination">Calories brulées</div>
-                    <div className="stat"><span className="statValue">{userProfile.statistics.totalCalories}</span><span className="statUnit"> cal</span></div>
-                </div>
-                <div className="statInfo">
-                    <div className="statExplaination">Distance totale parcourue</div>
-                    <div className="stat"><span className="statValue">{userProfile.statistics.totalDistance}</span><span className="statUnit"> km</span></div>
-                </div>
-                <div className="statInfo">
-                    <div className="statExplaination">Nombre de jours de repos</div>
-                    <div className="stat"><span className="statValue">{userProfile.statistics.totalDaysOff}</span><span className="statUnit"> jours </span></div>
-                </div>
-                <div className="statInfo">
-                    <div className="statExplaination">Nombre de sessions</div>
-                    <div className="stat"><span className="statValue">{userProfile.statistics.totalSessions}</span><span className="statUnit"> sessions</span></div>
-                </div>
+                <StatInfo label="Temps total couru" value={userProfile.statistics.totalDuration} unit="h"/>
+                <StatInfo label="Calories brulées" value={userProfile.statistics.totalCalories} unit="cal"/>
+                <StatInfo label="Distance totale parcourue" value={userProfile.statistics.totalDistance} unit="km"/>
+                <StatInfo label="Nombre de jours de repos" value={userProfile.statistics.totalDaysOff} unit="jours"/>
+                <StatInfo label="Nombre de sessions" value={userProfile.statistics.totalSessions} unit="sessions"/>
             </div>
         </div>
       </div></>
