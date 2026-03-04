@@ -40,7 +40,7 @@ function Dashboard() {
             </div><div>
               <h4>Cette semaine</h4>
               <div className="subTitle">Du 23/06/2025 au 30/06/2025</div>
-              <div className="graphArea">
+              <div className="weekArea">
                 <div className="weekRuns">
                   <div className="runResult"><span className="runValue">4X</span><span className="runUnit"> sur l objectif de 6</span></div>
                   <div className="activityExplaination">Courses hebdomadaires réalisées</div>

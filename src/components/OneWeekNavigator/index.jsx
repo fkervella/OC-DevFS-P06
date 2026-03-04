@@ -55,11 +55,11 @@ const OneWeekNavigator = ({startDate: initialStartDate, endDate: initialEndDate,
 
   return (
     <div className="weekNavigator">
-      <button class="buttonSelect" onClick={goToPreviousWeek}>&lt;</button>
+      <button className="buttonSelect" onClick={goToPreviousWeek}>&lt;</button>
       <div>
         <span>{formatDateRange(getMonday(currentStartDate), getSunday(currentStartDate))}</span>
       </div>
-      <button class="buttonSelect" onClick={goToNextWeek}>&gt;</button>
+      <button className="buttonSelect" onClick={goToNextWeek}>&gt;</button>
     </div>
   );
 };

@@ -423,6 +423,7 @@ a {
     display: flex;
     align-items: center;
     gap: 20px;
+    justify-content: right;
 }
 
 .graphExplaination {
@@ -454,6 +455,14 @@ a {
     color: #F4320B;
 }
 
+.weekArea {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr 1fr;
+    column-gap: 30px;
+    row-gap: 20px;
+}
+
 .subTitle {
     font: 'inter', sans-serif;
     font-size: 16px;
@@ -464,7 +473,9 @@ a {
 .weekRuns {
     background-color: #ffffff;
     border-radius: 10px;
-    padding: 20px
+    padding: 20px;
+    grid-column: 1;
+    grid-row: 1 / 4;
 }
 
 .activityExplaination {
@@ -478,12 +489,16 @@ a {
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 20px;
+    grid-column: 2;
+    grid-row: 1;
 }
 
 .activityDistance {
     background-color: #FFFFFF;
     border-radius: 10px;
     padding: 20px;
+    grid-column: 2;
+    grid-row: 2;
 }
 
 .runValue {
@@ -601,6 +616,11 @@ a {
   font-weight: 700;
 }
 
+.invisible {
+    background-color: #FFFFFF;
+    color:#0B23F4;
+    font-weight: 400;
+}
 
 #root {
   width:100%;
@@ -615,6 +635,7 @@ a {
     color: #747bff;
   }
   button {
-    background-color: #f9f9f9;
+    background-color: #0B23F4;
+    color: #FFFFFF;
   }
 }

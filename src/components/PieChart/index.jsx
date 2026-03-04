@@ -3,15 +3,15 @@ import { RechartsDevtools } from '@recharts/devtools';
 
 // #region Sample data
 const data02 = [
-    { name: '2 restants', value: 2, fill: "#B6BDFC", label: '2 restants' }, 
-    { name: '4 réalisés', value: 4, fill: "#0B23F4", label: '4 réalisés' },
+    { name: 'restants', value: 2, fill: "#B6BDFC"}, 
+    { name: 'réalisés', value: 4, fill: "#0B23F4"},
 ];
 
 // #endregion
 export default function SimplePieChart({isAnimationActive = true,defaultIndex}) {
     return (
         <PieChart
-            style={{ width: '100%', height: '100%', maxWidth: '500px', maxHeight: '80vh', aspectRatio: 1 }}
+            style={{ width: '100%', height: '100%', maxWidth: '300px', maxHeight: '80vh', aspectRatio: 1, margin: 'auto ' }}
             responsive
             >
         <Pie
@@ -22,7 +22,8 @@ export default function SimplePieChart({isAnimationActive = true,defaultIndex}) 
             innerRadius="40%"
             outerRadius="80%"
             fill="#0B23F4"
-            label
+            label={({ value, name}) => `${value} ${name}`}
+            labelLine={false}
             isAnimationActive={isAnimationActive}
             />
             

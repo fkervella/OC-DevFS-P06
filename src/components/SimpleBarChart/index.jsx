@@ -42,7 +42,7 @@ const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
 
   return (
     <BarChart
-      style={{ width: '100%', height: '300px', maxHeight: '300px', aspectRatio: 1.618 }}
+      style={{ width: '100%', height: '300px', maxHeight: '300px', aspectRatio: 1.618}}
       responsive
       data={data}
       onMouseEnter={() => setIsHovered(true)}

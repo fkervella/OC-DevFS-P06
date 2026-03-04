@@ -23,7 +23,7 @@ function Header() {
           <NavLink to="/profile" className="nav-link">Mon profil</NavLink>
           <div>|</div>
           {isAuthenticated ? (
-            <button onClick={handleLogout} className="nav-link">Se déconnecter</button>
+            <button className='invisible' onClick={handleLogout}>Se déconnecter</button>
             ) :(
             <NavLink to="/Login" className="nav-link">Se connecter</NavLink>
             )}
