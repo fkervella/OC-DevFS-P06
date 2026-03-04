@@ -6,30 +6,35 @@ import useFetch from '../../utils/hooks'
 
 function SimpleBarChartWithData() {
 
-  const [dateRange4, setDateRange4] = useState({
+  const [dateRange, setDateRange4] = useState({
     startDate: startOfWeek(new Date(), { weekStartsOn: 1 }), // Premier lundi de la semaine actuelle
     endDate: endOfWeek(addWeeks(new Date(), 3), { weekStartsOn: 1 }), // Dernier dimanche 4 semaines plus tard
   });
 
   const paramsKm = new URLSearchParams();
-  paramsKm.append('startWeek', dateRange4.startDate);
-  paramsKm.append('endWeek', dateRange4.endDate);
+  paramsKm.append('startWeek', dateRange.startDate);
+  paramsKm.append('endWeek', dateRange.endDate);
   const { data: userActivityKm, isLoading: isLoadingUserActivityKm, error: errorUserActivityKm } = useFetch(`http://localhost:8000/api/user-activity?${paramsKm}`);
   if (errorUserActivityKm) {
     alert("Problème lors de la récupération des données user-activity km");
   }
 
+  const [kmAverage, setKmAverage] = useState(0);
+  const handleKmAverageUpdate = (value) => { setKmAverage(value)};
+
   return (
     <>
       <div className="graphZone">
-        <div className="leftGraphTitle">18 km en moyenne</div>
-        <FourWeekNavigator startDate={dateRange4.startDate} endDate={dateRange4.endDate} onDateRangeChange={setDateRange4} />
+        <div className="leftGraphTitle">
+          { isLoadingUserActivityKm ? ("") : ( kmAverage + " km en moyenne")}
+        </div>
+        <FourWeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange4} />
         <div className="graphExplaination">Total des kilomètres des 4 dernières semaines</div>
           <div className="graph">
           { isLoadingUserActivityKm ? (<div>Chargement en cours</div>)
           : ( 
           <>
-          <SimpleBarChart activityData={userActivityKm} startDate={dateRange4.startDate} endDate={dateRange4.endDate} />
+          <SimpleBarChart activityData={userActivityKm} startDate={dateRange.startDate} endDate={dateRange.endDate} onKmAverageUpdate={handleKmAverageUpdate}/>
           </>
           )}
           </div>

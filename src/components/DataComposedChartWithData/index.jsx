@@ -19,17 +19,22 @@ function DataComposedChartWithData() {
     alert("Problème lors de la récupération des données user-activity Bpm");
   }
 
+  const [heartRateAverage, setHeartRateAverage] = useState(0);
+  const handleHeartRateAverageUpdate = (value) => { setHeartRateAverage(value)};
+
+
   return (
       <>
       <div className="graphZone">
-        <div className="rightGraphTitle">163 BPM</div>
+        <div className="rightGraphTitle">
+          { isLoadingUserActivityBpm ? (" ") : ( heartRateAverage + " BPM")}</div>
         <OneWeekNavigator startDate={dateRange.startDate} endDate={dateRange.endDate} onDateRangeChange={setDateRange} />
         <div className="graphExplaination">Fréquence cardiaque moyenne</div>
           <div className="graph">
         { isLoadingUserActivityBpm ? (<div>Chargement en cours</div>)
         : ( 
         <>
-        <DataComposedChart activityData={userActivityBpm} startDate={dateRange.startDate} endDate={dateRange.endDate} />
+        <DataComposedChart activityData={userActivityBpm} startDate={dateRange.startDate} endDate={dateRange.endDate} onHeartRateAverageUpdate={handleHeartRateAverageUpdate}/>
         </>
         )}
         </div>

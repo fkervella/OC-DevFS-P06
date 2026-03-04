@@ -27,8 +27,9 @@ function Dashboard() {
                 <div className="distance">{userProfile && userProfile.statistics.totalDistance} km</div>
               </div>
             </div>
-          </div><div className="performances">
-              <h4>Vos dernières performances</h4>
+          </div>
+          <div className="performances">
+              <h4 className="title">Vos dernières performances</h4>
               <div className="graphArea">
                 <div className="leftGraph">
                   <SimpleBarChartWithData />
@@ -38,16 +39,16 @@ function Dashboard() {
                 </div>
               </div>
             </div><div>
-              <h4>Cette semaine</h4>
+              <h4 className="title">Cette semaine</h4>
               <div className="subTitle">Du 23/06/2025 au 30/06/2025</div>
               <div className="weekArea">
                 <div className="weekRuns">
-                  <div className="runResult"><span className="runValue">4X</span><span className="runUnit"> sur l objectif de 6</span></div>
+                  <div className="runResult"><span className="runValue">4X</span><span className="runUnit"> sur l'objectif de 6</span></div>
                   <div className="activityExplaination">Courses hebdomadaires réalisées</div>
                   <SimplePieChart />
                 </div>
                 <div className="activityTime">
-                  <div className="activityExplaination">Durée de l activité</div>
+                  <div className="activityExplaination">Durée de l'activité</div>
                   <div className="timeResult"><span className="timeValue">140</span><span className="timeUnit"> minutes</span></div>
                 </div>
                 <div className="activityDistance">

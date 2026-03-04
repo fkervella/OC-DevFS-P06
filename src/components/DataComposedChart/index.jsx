@@ -1,9 +1,9 @@
 import { ComposedChart, Line, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import { format, isWithinInterval, parseISO } from 'date-fns';
-import {useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const DataComposedChart = ( { activityData, startDate, endDate } ) => {
+const DataComposedChart = ( { activityData, startDate, endDate, onHeartRateAverageUpdate } ) => {
 
     function transformData(jsonData, startDate, endDate) {
   
@@ -48,6 +48,19 @@ const DataComposedChart = ( { activityData, startDate, endDate } ) => {
     }
   
     const data = transformData(activityData, startDate, endDate);
+    
+    useEffect(() => {
+      const filteredValidValues = data.filter(entry => entry.average > 0 );
+
+      let heartRateAverage = 0 ;
+
+      if(filteredValidValues.length > 0) {
+        const heartRateSum = filteredValidValues.reduce((acc, entry) => acc+ entry.average, 0);
+        heartRateAverage = Math.round(heartRateSum / filteredValidValues.length);
+      }
+
+      onHeartRateAverageUpdate(heartRateAverage);
+    }, [onHeartRateAverageUpdate]);
     
     const [isHovered, setIsHovered] = useState(false);
 

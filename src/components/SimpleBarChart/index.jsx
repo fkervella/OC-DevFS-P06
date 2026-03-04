@@ -1,9 +1,9 @@
 import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 import { RechartsDevtools } from '@recharts/devtools';
 import { endOfWeek, isWithinInterval, eachWeekOfInterval, startOfWeek } from 'date-fns';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
+const SimpleBarChart = ( { activityData, startDate, endDate, onKmAverageUpdate } ) => {
 
   function transformData(jsonData, startDate, endDate) {
 
@@ -37,6 +37,16 @@ const SimpleBarChart = ( { activityData, startDate, endDate } ) => {
   }
 
   const data = transformData(activityData, startDate, endDate);
+  
+  useEffect(() => {
+    let kmAverage = 0;
+
+    if(data.length > 0) {
+      const kmSum = data.reduce((acc, entry) => acc+ entry.km, 0);
+      kmAverage = Math.round(kmSum / data.length);
+    }
+    onKmAverageUpdate(kmAverage);
+  }, [onKmAverageUpdate]);
 
   const [isHovered, setIsHovered] = useState(false);
 
